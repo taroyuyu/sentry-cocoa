@@ -124,4 +124,8 @@ class TestData {
         
         return frame
     }
+    
+    static var attachment: Attachment {
+        return Attachment(path: "path/to/file.txt", filename: "file.txt")
+    }
 }

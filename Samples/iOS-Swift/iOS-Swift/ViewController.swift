@@ -13,6 +13,7 @@ class ViewController: UIViewController {
             let user = Sentry.User(userId: "1")
             user.email = "tony@example.com"
             scope.setUser(user)
+            scope.add(Attachment(data: "hello".data(using: .utf8)!, filename: "log.txt"))
         }
         // Also works
         let user = Sentry.User(userId: "1")

@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@class SentryEnvelope, SentryEvent, SentrySession, SentryUserFeedback;
+@class SentryEnvelope, SentryEvent, SentrySession, SentryUserFeedback, SentryAttachment;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +21,9 @@ NS_SWIFT_NAME(Transport)
  *
  * @param event SentryEvent that should be sent
  */
-- (void)sendEvent:(SentryEvent *)event NS_SWIFT_NAME(send(event:));
+- (void)sendEvent:(SentryEvent *)event
+      attachments:(NSArray<SentryAttachment *> *)attachments
+    NS_SWIFT_NAME(send(event:attachments:));
 
 - (void)sendEvent:(SentryEvent *)event withSession:(SentrySession *)session;
 

@@ -18,6 +18,7 @@
 #import "SentryMeta.h"
 #import "SentryOptions.h"
 #import "SentrySDK+Private.h"
+#import "SentryScope+Private.h"
 #import "SentryScope.h"
 #import "SentryStacktraceBuilder.h"
 #import "SentryThreadInspector.h"
@@ -223,7 +224,7 @@ NSString *const DropSessionLogMessage = @"Session has no release name. Won't sen
                                        isCrashEvent:isCrashEvent];
 
     if (nil != preparedEvent) {
-        [self.transport sendEvent:preparedEvent];
+        [self.transport sendEvent:preparedEvent attachments:scope.attachments];
         return preparedEvent.eventId;
     }
 
@@ -236,7 +237,7 @@ NSString *const DropSessionLogMessage = @"Session has no release name. Won't sen
     if (nil != event) {
         if (nil == session.releaseName || [session.releaseName length] == 0) {
             [SentryLog logWithMessage:DropSessionLogMessage andLevel:kSentryLogLevelDebug];
-            [self.transport sendEvent:event];
+            [self.transport sendEvent:event attachments:[NSArray new]];
             return event.eventId;
         }
 

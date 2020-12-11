@@ -1,7 +1,7 @@
 #import "SentryDefines.h"
 #import "SentrySerializable.h"
 
-@class SentryUser, SentrySession, SentryOptions, SentryBreadcrumb;
+@class SentryUser, SentrySession, SentryOptions, SentryBreadcrumb, SentryAttachment;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -104,6 +104,8 @@ NS_SWIFT_NAME(Scope)
  * Remove the context for the specified key.
  */
 - (void)removeContextForKey:(NSString *)key NS_SWIFT_NAME(removeContext(key:));
+
+- (void)addAttachment:(SentryAttachment *)attachment;
 
 /**
  * Clears the current Scope
